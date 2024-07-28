@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\MapArea;
+use App\Models\MapAreaCategory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        MapAreaCategory::factory(10)->create();
+        MapArea::factory(100)->create();
     }
 }
