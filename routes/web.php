@@ -1,15 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Areas\Index;
+use App\Livewire\Areas\Show;
 
-Route::view('/', 'welcome');
+Route::get('/', Index::class)->name('areas.index');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+Route::group([
+    'prefix' => 'areas'
+], function () {
+    Route::get('create', Show::class)->name('areas.create');
+    Route::get('show/{area}', Show::class)->name('areas.show');
+});
 
 require __DIR__.'/auth.php';
