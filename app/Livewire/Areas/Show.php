@@ -49,7 +49,7 @@ class Show extends Component
             'description' => 'nullable',
             'map_area_categories_id' => 'required|exists:map_area_categories,id',
             'valid_from' => 'required|date',
-            'valid_to' => 'nullable|date',
+            'valid_to' => 'nullable|date|after:valid_from',
             'display_in_breaches' => 'nullable|boolean',
             'geo_json' => 'required|array',
         ]);
