@@ -19,12 +19,12 @@
             <input type="hidden" name="geo_json" id="geo_json" wire:model="geo_json">
             <input type="hidden" name="encoded_geo_json" id="encoded_geo_json" wire:model="encoded_geo_json">
 
-            <div class="flex flex-col border border-gray-300 rounded-lg bg-white" id="drop-area">
+            <div class="flex flex-col border border-gray-300 rounded-lg bg-white relative">
+                <input type="file" name="file" id="drop-area" accept=".geojson" class="absolute left-0 top-0 opacity-0 h-full">
                 <div class="text-xl font-bold bg-gray-200 border p-2 border-gray-300">New Area</div>
                 <div class="p-2">
                     Click here to select file to upload<br>
                     <i>(Or drag & drop files)</i>
-                    <input type="file" name="file" id="file" accept=".geojson" class="hidden" onchange="handleFileSelect(event)">
                     <div class="text-center">
                         <i class="fa-solid fa-folder-plus text-9xl" id="file-upload-icon"></i>
                     </div>

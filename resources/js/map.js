@@ -135,40 +135,27 @@ document.addEventListener('livewire:initialized', () => {
     }
 
     // ************************ Drag and drop ***************** //
-
-
     // Prevent default drag behaviors
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    ['dragenter', 'dragover', 'dragleave', 'drop', 'change'].forEach(eventName => {
         dropArea.addEventListener(eventName, preventDefaults, false);
         document.body.addEventListener(eventName, preventDefaults, false);
     });
 
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropArea.addEventListener(eventName, startAnimatePulse, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, stopAnimatePulse, false);
-    });
-
     // Handle dropped files
-    dropArea.addEventListener('drop', handleDrop, false);
+    dropArea.addEventListener('drop', handleFileDrop, false);
+    dropArea.addEventListener('change', handleFileSelect, false);
 
     function preventDefaults(e) {
         e.preventDefault();
         e.stopPropagation();
     }
 
-    function startAnimatePulse(e) {
-        document.getElementById('file-upload-icon').classList.add('animate-pulse');
+    function handleFileDrop(e) {
+       loadFile(e.dataTransfer.files[0]);
     }
 
-    function stopAnimatePulse(e) {
-        document.getElementById('file-upload-icon').classList.remove('animate-pulse');
-    }
-
-    function handleDrop(e) {
-        loadFile(e.dataTransfer.files[0]);
+    function handleFileSelect(e) {
+        loadFile(e.target.files[0]);
     }
 
     function loadFile(file) {
