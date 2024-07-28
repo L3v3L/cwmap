@@ -8,13 +8,15 @@ CWmap is a proof of concept Laravel app that allows the user to create polygon f
 - PHP ^8.2
 - Composer
 - Node.js
-- NPM
+- npm
 
 ## Installation
 ```bash
 git clone https://github.com/L3v3L/cwmap.git
+cd cwmap
 composer install
 npm install
+# when asked if command should create sqlite database, choose yes
 php artisan migrate --seed
 npm run build
 ```
