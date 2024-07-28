@@ -30,10 +30,9 @@ document.addEventListener('livewire:initialized', () => {
         }, 3000);
     });
 
-    let geojsonObject = defaultGeoJson;
-    if (document.getElementById('geo_json').value) {
-        geojsonObject = document.getElementById('encoded_geo_json').value;
-    }
+
+    let geojsonObject = document.getElementById('geo_json').value ? document.getElementById('encoded_geo_json').value : defaultGeoJson;
+
 
     // Loading GeoJSON features with a Vector source
     const vector = new VectorLayer({
@@ -94,7 +93,7 @@ document.addEventListener('livewire:initialized', () => {
     createNewVectorSource(geojsonObject);
 
     // Save the area button
-    document.getElementById('save_area').addEventListener('click', function () {
+    document.getElementById('save_area').addEventListener('click', () => {
         const format = new GeoJSON();
         const features = vector.getSource().getFeatures();
         Livewire.first().set('geo_json', JSON.parse(format.writeFeatures(features)));
@@ -102,9 +101,7 @@ document.addEventListener('livewire:initialized', () => {
     });
 
     // Clear the map button
-    document.getElementById('clear_map').addEventListener('click', function () {
-        createNewVectorSource(defaultGeoJson);
-    });
+    document.getElementById('clear_map').addEventListener('click', () => createNewVectorSource(defaultGeoJson));
 
     function createNewVectorSource(json) {
         vector.setSource(new VectorSource({
@@ -161,7 +158,7 @@ document.addEventListener('livewire:initialized', () => {
     function loadFile(file) {
         let reader = new FileReader();
         reader.readAsText(file);
-        reader.onloadend = function () {
+        reader.onloadend =  () =>{
             let result = reader.result;
             result = JSON.parse(result);
             Livewire.first().set('name', result.name);
