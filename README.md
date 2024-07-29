@@ -30,6 +30,20 @@ GeoJson files may be dragged and dropped onto the folder icon to load the polygo
 
 Map Projection is set to PSG:4326
 
+## Showcases
+* Laravel main components
+* Livewire main components
+* Validation
+* Handling files
+* Drag and drop
+* Seeding
+* Use of Javascript 3rd party libraries
+* use of TailwindCSS
+* Eloquent
+* Search filters
+* Pagination
+* Styling to requirements
+
 ## Made with
  - https://laravel.com/
  - https://livewire.laravel.com/
