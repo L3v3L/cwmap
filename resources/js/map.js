@@ -10,7 +10,7 @@ import GeoJSON from 'ol/format/GeoJSON.js';
 let draw;
 let snap;
 let modify;
-let defaultGeoJson ={
+let defaultGeoJson = {
     'type': 'FeatureCollection',
     "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
     'features': []
@@ -19,15 +19,27 @@ let dropArea = document.getElementById("drop-area");
 
 
 document.addEventListener('livewire:initialized', () => {
-
-    // Toast event
-    Livewire.on('toast', (options) => {
+    function showToast(message , type = 'success') {
         let toastElement = document.getElementById('toast');
-        toastElement.innerHTML = options[0].message;
+        toastElement.innerHTML = message;
+        if (type === 'success') {
+            toastElement.classList.remove('custom-toast-error');
+            toastElement.classList.add('custom-toast-success');
+        } else {
+            toastElement.classList.remove('custom-toast-success');
+            toastElement.classList.add('custom-toast-error');
+        }
         toastElement.classList.remove('hidden');
         setTimeout(function () {
             toastElement.classList.add('hidden');
         }, 3000);
+    }
+
+
+
+    // Toast event
+    Livewire.on('toast', (options) => {
+        showToast(options[0].message);
     });
 
 
@@ -148,7 +160,7 @@ document.addEventListener('livewire:initialized', () => {
     }
 
     function handleFileDrop(e) {
-       loadFile(e.dataTransfer.files[0]);
+        loadFile(e.dataTransfer.files[0]);
     }
 
     function handleFileSelect(e) {
@@ -158,11 +170,16 @@ document.addEventListener('livewire:initialized', () => {
     function loadFile(file) {
         let reader = new FileReader();
         reader.readAsText(file);
-        reader.onloadend =  () =>{
-            let result = reader.result;
-            result = JSON.parse(result);
-            Livewire.first().set('name', result.name);
-            createNewVectorSource(result);
+        reader.onloadend = () => {
+            try {
+                let result = reader.result;
+                result = JSON.parse(result);
+                Livewire.first().set('name', result.name);
+                createNewVectorSource(result);
+            } catch (e) {
+                showToast('Invalid file format', 'error');
+                return;
+            }
         };
     }
 });

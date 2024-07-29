@@ -1,6 +1,6 @@
 <div style="width: 100%; height: 100vh">
 
-    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md w-full absolute z-10 hidden" id="toast" wire:ignore onclick="this.classList.add('hidden')">
+    <div class="rounded-b  px-4 py-3 shadow-md w-full absolute z-10 hidden" id="toast" wire:ignore onclick="this.classList.add('hidden')">
     </div>
 
     <div class="text-xl mb-2">

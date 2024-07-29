@@ -4,6 +4,7 @@ namespace App\Livewire\Areas;
 
 use App\Models\MapArea;
 use App\Models\MapAreaCategory;
+use App\Rules\GeoJsonValidRule;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -51,7 +52,7 @@ class Show extends Component
             'valid_from' => 'required|date',
             'valid_to' => 'nullable|date|after:valid_from',
             'display_in_breaches' => 'nullable|boolean',
-            'geo_json' => 'required|array',
+            'geo_json' => ['required', new GeoJsonValidRule]
         ]);
 
         if($this->areaId??null) {

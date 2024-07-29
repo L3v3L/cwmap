@@ -36,3 +36,11 @@
 span[aria-current="page"] > span {
     @apply bg-gray-200;
 }
+
+.custom-toast-success {
+    @apply bg-teal-100 border-teal-500 text-teal-900;
+}
+
+.custom-toast-error {
+    @apply bg-red-100 border-red-500 text-red-900;
+}
