@@ -81,6 +81,5 @@
             @error('geo_json') <span class="custom-error">{{ $message }}</span> @enderror
         </div>
     </div>
+    @vite(['resources/js/map.js'])
 </div>
-
-@vite(['resources/js/map.js'])
